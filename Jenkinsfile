@@ -7,6 +7,9 @@ pipeline {
         SERVER_HOST = '13.232.241.115'
         SERVER_PATH = '/path/to/deployment/directory'
         SSH_KEY = credentials('jenkins') // Jenkins credentials ID for SSH private key
+        VENV_DIR = '.venv'
+        PYTHON_VERSION = 'python3' // Change to 'python' if it points to Python 3 on your agent
+        //REPO_URL = 'https://github.com/yourusername/your-python-repo.git'
     }
 
     stages {
@@ -21,17 +24,24 @@ pipeline {
 
         stage('Setup Environment') {
             steps {
-                // Set up a virtual environment and install dependencies
-                
-                sh 'python3 -m venv venv'
-                sh 'source venv/bin/activate && pip install -r requirements.txt'
+                script {
+                    // Set up a Python virtual environment
+                    sh "${PYTHON_VERSION} -m venv ${VENV_DIR}"
+                    sh "${VENV_DIR}/bin/pip install --upgrade pip"
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                // Install dependencies from requirements.txt
+                sh "${VENV_DIR}/bin/pip install -r requirements.txt"
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run tests to make sure everything is working
-                sh 'source venv/bin/activate && pytest'
+                // Run your test suite
+                sh "${VENV_DIR}/bin/pytest"
             }
         }
 
