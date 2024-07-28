@@ -9,8 +9,8 @@ pipeline {
         SSH_KEY = credentials('jenkins') // Jenkins credentials ID for SSH private key
         VENV_DIR = '.venv'
         PYTHON_VERSION = 'python3' // Change to 'python' if it points to Python 3 on your agent
-        FASTAPI_PID_FILE = '/tmp/fastapi_app.pid'
-        //REPO_URL = 'https://github.com/yourusername/your-python-repo.git'
+        
+        
     }
 
     stages {
@@ -57,7 +57,7 @@ pipeline {
         always {
             // Cleanup actions
             echo 'Cleaning up...'
-            //sh 'rm -f ${env.FASTAPI_PID_FILE}'
+            
         }
         
         success {
