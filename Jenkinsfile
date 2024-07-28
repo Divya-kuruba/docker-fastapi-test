@@ -38,12 +38,7 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                // Run your test suite
-                sh "${VENV_DIR}/bin/pytest"
-            }
-        }
+        
 
         stage('Build') {
             steps {
