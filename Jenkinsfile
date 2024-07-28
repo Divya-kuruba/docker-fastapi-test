@@ -41,12 +41,7 @@ pipeline {
 
         
 
-        stage('Build') {
-            steps {
-                // Optionally build your application or package it
-                echo 'Building the application...'
-            }
-        }
+        
         stage('Start FastAPI App') {
             steps {
                 // Start your FastAPI application
@@ -81,7 +76,7 @@ pipeline {
         always {
             // Cleanup actions
             echo 'Cleaning up...'
-            sh 'rm -f ${env.FASTAPI_PID_FILE}'
+            //sh 'rm -f ${env.FASTAPI_PID_FILE}'
         }
         
         success {
