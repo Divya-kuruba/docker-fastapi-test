@@ -80,6 +80,7 @@ pipeline {
         always {
             // Cleanup actions
             echo 'Cleaning up...'
+            sh 'rm -f ${env.FASTAPI_PID_FILE}'
         }
         
         success {
