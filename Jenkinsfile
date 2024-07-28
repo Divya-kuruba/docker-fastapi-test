@@ -50,7 +50,7 @@ pipeline {
         stage('Deploy application') {
             steps {
                 // Set up a virtual environment and install dependencies
-                sh 'uvicorn main:app --reload --port=8000 --host=0.0.0.0'
+                sh -c 'uvicorn main:app --reload --port=8000 --host=0.0.0.0'
                 
             }
         }
