@@ -46,11 +46,18 @@ pipeline {
                 echo 'Building the application...'
             }
         }
+        stage('Start FastAPI App') {
+            steps {
+                // Start your FastAPI application
+                sh "${VENV_DIR}/bin/uvicorn main:app --reload --port=8000 --host=0.0.0.0"
+            }
+        }
 
         stage('Deploy application') {
             steps {
                 // Set up a virtual environment and install dependencies
-                sh -c 'uvicorn main:app --reload --port=8000 --host=0.0.0.0'
+                //sh -c 'uvicorn main:app --reload --port=8000 --host=0.0.0.0'
+                echo 'success'
                 
             }
         }
