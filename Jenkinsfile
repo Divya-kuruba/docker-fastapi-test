@@ -49,7 +49,7 @@ pipeline {
         stage('Start FastAPI App') {
             steps {
                 // Start your FastAPI application
-                sh "${VENV_DIR}/bin/uvicorn main:app --reload --port=8000 --host=0.0.0.0"
+                sh "${VENV_DIR}/bin/uvicorn app.main:app --reload --port=8000 --host=0.0.0.0"
             }
         }
 
