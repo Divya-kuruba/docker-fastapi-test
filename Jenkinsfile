@@ -51,7 +51,7 @@ pipeline {
                     sh """
                     uvicorn app.main:app --host 0.0.0.0 --port 8000 & echo \$! > ${env.FASTAPI_PID_FILE}
                     """
-                    sleep 30
+                    
                 }
             }
         }
@@ -64,7 +64,7 @@ pipeline {
         always {
             // Cleanup actions
             echo 'Cleaning up...'
-            sh 'rm -f ${env.FASTAPI_PID_FILE}'
+            //sh 'rm -f ${env.FASTAPI_PID_FILE}'
         }
         
         success {
