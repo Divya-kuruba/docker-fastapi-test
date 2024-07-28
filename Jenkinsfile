@@ -56,6 +56,7 @@ pipeline {
                     sh """
                     uvicorn app.main:app --host 0.0.0.0 --port 8000 & echo \$! > ${env.FASTAPI_PID_FILE}
                     """
+                    sleep 30
                 }
             }
         }
