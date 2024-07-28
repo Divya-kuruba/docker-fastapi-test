@@ -55,19 +55,7 @@ pipeline {
                 }
             }
         }
-        stage('Stop FastAPI') {
-            steps {
-                script {
-                    // Stop FastAPI gracefully
-                    sh """
-                    if [ -f ${env.FASTAPI_PID_FILE} ]; then
-                        kill -SIGTERM \$(cat ${env.FASTAPI_PID_FILE}) || true
-                        rm -f ${env.FASTAPI_PID_FILE}
-                    fi
-                    """
-                }
-            }
-        }
+        
 
         
     }
@@ -76,7 +64,7 @@ pipeline {
         always {
             // Cleanup actions
             echo 'Cleaning up...'
-            //sh 'rm -f ${env.FASTAPI_PID_FILE}'
+            sh 'rm -f ${env.FASTAPI_PID_FILE}'
         }
         
         success {
