@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define environment variables
         SERVER_USER = 'ubuntu'
-        SERVER_HOST = '13.233.157.159'
+        SERVER_HOST = '13.232.241.115'
         SERVER_PATH = '/path/to/deployment/directory'
         SSH_KEY = credentials('jenkins') // Jenkins credentials ID for SSH private key
     }
