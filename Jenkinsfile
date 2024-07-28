@@ -53,22 +53,22 @@ pipeline {
             }
         }
 
-        stage('Deploy application') {
-            steps {
-                // Set up a virtual environment and install dependencies
-                //sh -c 'uvicorn main:app --reload --port=8000 --host=0.0.0.0'
-                echo 'success'
-                
-            }
-        }
+        
     }
 
     post {
-        success {
-            echo 'Deployment successful!'
+        always {
+            // Cleanup actions
+            echo 'Cleaning up...'
         }
+        
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        
         failure {
-            echo 'Deployment failed!'
+            echo 'Pipeline failed!'
         }
     }
+}
 }
